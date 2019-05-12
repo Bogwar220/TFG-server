@@ -1,16 +1,11 @@
 package com.example.tfg.modelos;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,14 +20,18 @@ public class Semana {
 	@Column (name = "nombre")
 	private String nombre;
 	
+	@ManyToOne
+	private Semana semana;
+	
 	public Semana() {
 		
 	}
 
-	public Semana(long id, String nombre) {
+	public Semana(long id, String nombre, Semana semana) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
+		this.semana = semana;
 	}
 
 	public long getId() {
@@ -49,5 +48,13 @@ public class Semana {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public Semana getSemana() {
+		return semana;
+	}
+
+	public void setSemana(Semana semana) {
+		this.semana = semana;
 	}
 }
