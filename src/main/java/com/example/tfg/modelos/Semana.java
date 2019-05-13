@@ -20,18 +20,14 @@ public class Semana {
 	@Column (name = "nombre")
 	private String nombre;
 	
-	@ManyToOne
-	private Semana semana;
-	
 	public Semana() {
 		
 	}
 
-	public Semana(long id, String nombre, Semana semana) {
+	public Semana(long id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
-		this.semana = semana;
 	}
 
 	public long getId() {
@@ -48,13 +44,5 @@ public class Semana {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public Semana getSemana() {
-		return semana;
-	}
-
-	public void setSemana(Semana semana) {
-		this.semana = semana;
 	}
 }

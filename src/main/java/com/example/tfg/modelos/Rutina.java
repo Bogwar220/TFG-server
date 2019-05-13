@@ -17,25 +17,25 @@ public class Rutina {
 	@Column(name = "id")
 	private long id;
 	
-	@Column (name = "tiempo")
-	private int tiempo;
-	
 	@Column (name = "repeticiones")
 	private int repeticiones;
 	
 	@ManyToOne
 	private Dia dia;
 	
+	@ManyToOne
+	private Ejercicio ejercicio;
+	
 	public Rutina() {
 		
 	}
 
-	public Rutina(long id, int tiempo, int repeticiones, Dia dia) {
+	public Rutina(long id, int repeticiones, Dia dia, Ejercicio ejercicio) {
 		super();
 		this.id = id;
-		this.tiempo = tiempo;
 		this.repeticiones = repeticiones;
 		this.dia = dia;
+		this.ejercicio = ejercicio;
 	}
 
 	public long getId() {
@@ -44,14 +44,6 @@ public class Rutina {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public int getTiempo() {
-		return tiempo;
-	}
-
-	public void setTiempo(int tiempo) {
-		this.tiempo = tiempo;
 	}
 
 	public int getRepeticiones() {
@@ -69,4 +61,12 @@ public class Rutina {
 	public void setDia(Dia dia) {
 		this.dia = dia;
 	}
+
+	public Ejercicio getEjercicio() {
+		return ejercicio;
+	}
+
+	public void setEjercicio(Ejercicio ejercicio) {
+		this.ejercicio = ejercicio;
+	}	
 }

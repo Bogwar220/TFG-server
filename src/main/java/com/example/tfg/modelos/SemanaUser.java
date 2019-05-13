@@ -1,5 +1,6 @@
 package com.example.tfg.modelos;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,15 +22,19 @@ public class SemanaUser {
 	@ManyToOne
 	private User user;
 	
+	@Column(name = "seleccionado")
+	private int seleccionado = 0;
+	
 	public SemanaUser() {
 		
 	}
 
-	public SemanaUser(long id, Semana semana, User user) {
+	public SemanaUser(long id, Semana semana, User user, int seleccionado) {
 		super();
 		this.id = id;
 		this.semana = semana;
 		this.user = user;
+		this.seleccionado = seleccionado;
 	}
 
 	public long getId() {
@@ -54,5 +59,13 @@ public class SemanaUser {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public int getSeleccionado() {
+		return seleccionado;
+	}
+
+	public void setSeleccionado(int seleccionado) {
+		this.seleccionado = seleccionado;
 	}	
 }
