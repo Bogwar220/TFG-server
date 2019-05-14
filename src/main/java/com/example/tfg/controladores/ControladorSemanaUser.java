@@ -28,19 +28,28 @@ public class ControladorSemanaUser {
 	@Autowired
 	private UserRepository repUser;
 	
+	
+	//TODO:  no entiendo porque lo tengo que lanzar 2 veces para que lo enseñe
 	@GetMapping("/semUser")
 	@ResponseBody Object getSemUser(@RequestParam int idUser) {
-		List<Semana> semanas = new ArrayList<Semana>();
+		List<SemanaUser> semanas = new ArrayList<SemanaUser>();
 		Iterable<SemanaUser> iterSemUser = repSemUser.findAll();
 		for(SemanaUser semUser : iterSemUser) {
 			if(semUser.getUser().getId() == idUser) {
-				semanas.add(semUser.getSemana());
+				semanas.add(semUser);
+			}
+		}		
+		if(semanas.size()< 1) {
+			anadir(idUser);	
+			while(semanas.size() < 2) {
+				for(SemanaUser semUser : iterSemUser) {
+				if(semUser.getUser().getId() == idUser) {
+					semanas.add(semUser);
+					}
+				}				
 			}
 		}
 		
-		if(semanas.size()< 1) {
-			anadir(idUser);			
-		}
 		return semanas;
 	}
 	
@@ -64,12 +73,12 @@ public class ControladorSemanaUser {
 		for(User user : iterUser) {
 			if(user.getId() == idUser) {
 				for(Semana semana : iterSem) {					
-					if(semana.getNombre().equals("facil")) {
+					if(semana.getNombre().equals("Facil")) {
 						crear(semana,user,1);
 					}
 					
-					if(semana.getNombre().equals("medium") ||
-							semana.getNombre().equals("dificil")) {
+					if(semana.getNombre().equals("Medium") ||
+							semana.getNombre().equals("Dificil")) {
 						crear(semana,user,0);
 					}
 				}

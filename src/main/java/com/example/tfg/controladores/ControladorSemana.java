@@ -24,8 +24,7 @@ public class ControladorSemana {
 	}
 	
 	@GetMapping("/semana")
-	@ResponseBody Object getSemana() {
-		
+	@ResponseBody Object getSemana() {		
 		if(repSem.findAll().size() < 1)
 			anadir();
 		return repSem.findAll();
@@ -38,8 +37,8 @@ public class ControladorSemana {
 	}
 	
 	private void anadir() {
-		crear("facil");
-		crear("medium");
-		crear("dificil");
+		crear("Facil");
+		crear("Medium");
+		crear("Dificil");
 	}
 }
