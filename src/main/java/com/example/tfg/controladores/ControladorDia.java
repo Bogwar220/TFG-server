@@ -35,25 +35,47 @@ public class ControladorDia {
 	}
 	
 	@GetMapping("/dia")
-	@ResponseBody Object getDia(@RequestParam int idUser, @RequestParam int idSem) {
+	@ResponseBody Object getDia(@RequestParam int idSemUser) {
 		Iterable<SemanaUser> iterSemUser = repSemUser.findAll();
 		Iterable<Dia> iterDia = repDia.findAll();
 		List<Dia> dias = new ArrayList<Dia>();
 		for(SemanaUser semUser : iterSemUser) {
-			if(semUser.getUser().getId() == idUser && semUser.getSemana().getId() == idSem) {
+			if(semUser.getId() == idSemUser) {
 				for(Dia dia : iterDia) {
-					if(dia.getSemana().getId() == semUser.getSemana().getId()) {
+					if(semUser.getSemana().getId() == dia.getSemana().getId()) {
 						dias.add(dia);
 					}
 				}
 			}
 		}
+		
 		if(dias.size() < 1) {
 			anadir();
 		}
 		
 		return dias;
 	}
+	
+//	@GetMapping("/dia")
+//	@ResponseBody Object getDia(@RequestParam int idUser, @RequestParam int idSem) {
+//		Iterable<SemanaUser> iterSemUser = repSemUser.findAll();
+//		Iterable<Dia> iterDia = repDia.findAll();
+//		List<Dia> dias = new ArrayList<Dia>();
+//		for(SemanaUser semUser : iterSemUser) {
+//			if(semUser.getUser().getId() == idUser && semUser.getSemana().getId() == idSem) {
+//				for(Dia dia : iterDia) {
+//					if(dia.getSemana().getId() == semUser.getSemana().getId()) {
+//						dias.add(dia);
+//					}
+//				}
+//			}
+//		}
+//		if(dias.size() < 1) {
+//			anadir();
+//		}
+//		
+//		return dias;
+//	}
 	
 	private void crear(String nombre, Semana semana) {
 		Dia dia = new Dia();
@@ -65,9 +87,9 @@ public class ControladorDia {
 	private void anadir() {
 		Iterable<Semana> iterSem = repSem.findAll();
 		for(Semana semana : iterSem) {
-			if(semana.getNombre().equals("facil") || 
-					semana.getNombre().equals("medium") ||
-					semana.getNombre().equals("dificil")) {
+			if(semana.getNombre().equals("Facil") || 
+					semana.getNombre().equals("Medium") ||
+					semana.getNombre().equals("Dificil")) {
 				crear("Lunes", semana);
 				crear("Martes", semana);
 				crear("Miercoles", semana);

@@ -41,13 +41,11 @@ public class ControladorSemanaUser {
 		}		
 		if(semanas.size()< 1) {
 			anadir(idUser);	
-			while(semanas.size() < 2) {
-				for(SemanaUser semUser : iterSemUser) {
+			for(SemanaUser semUser : iterSemUser) {
 				if(semUser.getUser().getId() == idUser) {
 					semanas.add(semUser);
-					}
-				}				
-			}
+				}
+			}			
 		}
 		
 		return semanas;

@@ -63,7 +63,7 @@ public class ControladorRutina {
 		Iterable<Ejercicio> iterEj = repEj.findAll();
 		for(Dia dia : iterDia) {
 			if(dia.getId() == idDia) {
-				if(dia.getSemana().getNombre().equals("facil") && (dia.getNombre().equals("Lunes") ||
+				if(dia.getSemana().getNombre().equals("Facil") && (dia.getNombre().equals("Lunes") ||
 						dia.getNombre().equals("Martes") ||
 						dia.getNombre().equals("Miercoles") ||
 						dia.getNombre().equals("Jueves") ||
@@ -75,7 +75,7 @@ public class ControladorRutina {
 					}
 				}
 				
-				if(dia.getSemana().getNombre().equals("facil") && (dia.getNombre().equals("Sabado") ||
+				if(dia.getSemana().getNombre().equals("Facil") && (dia.getNombre().equals("Sabado") ||
 						dia.getNombre().equals("Domingo"))) {
 					for(Ejercicio ej : iterEj) {
 						if(ej.getNombre().equals("Descanso")) {
@@ -83,7 +83,7 @@ public class ControladorRutina {
 						}
 					}
 				}
-				if(dia.getSemana().getNombre().equals("medium") && (dia.getNombre().equals("Lunes") ||
+				if(dia.getSemana().getNombre().equals("Medium") && (dia.getNombre().equals("Lunes") ||
 						dia.getNombre().equals("Martes") ||
 						dia.getNombre().equals("Miercoles") ||
 						dia.getNombre().equals("Jueves") ||
@@ -95,7 +95,7 @@ public class ControladorRutina {
 					}
 				}
 				
-				if(dia.getSemana().getNombre().equals("medium") && (dia.getNombre().equals("Sabado") ||
+				if(dia.getSemana().getNombre().equals("Medium") && (dia.getNombre().equals("Sabado") ||
 						dia.getNombre().equals("Domingo"))) {
 					for(Ejercicio ej : iterEj) {
 						if(ej.getNombre().equals("Descanso")) {
@@ -104,7 +104,7 @@ public class ControladorRutina {
 					}
 				}
 				
-				if(dia.getSemana().getNombre().equals("dificil") && (dia.getNombre().equals("Lunes") ||
+				if(dia.getSemana().getNombre().equals("Dificil") && (dia.getNombre().equals("Lunes") ||
 						dia.getNombre().equals("Martes") ||
 						dia.getNombre().equals("Miercoles") ||
 						dia.getNombre().equals("Jueves") ||
@@ -116,7 +116,7 @@ public class ControladorRutina {
 					}
 				}
 				
-				if(dia.getSemana().getNombre().equals("dificil") && (dia.getNombre().equals("Sabado") ||
+				if(dia.getSemana().getNombre().equals("Dificil") && (dia.getNombre().equals("Sabado") ||
 						dia.getNombre().equals("Domingo"))) {
 					for(Ejercicio ej : iterEj) {
 						if(ej.getNombre().equals("Descanso")) {
