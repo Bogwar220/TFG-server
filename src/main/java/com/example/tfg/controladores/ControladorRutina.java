@@ -2,11 +2,13 @@ package com.example.tfg.controladores;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.tfg.modelos.Dia;
 import com.example.tfg.modelos.Ejercicio;
 import com.example.tfg.modelos.Rutina;
+import com.example.tfg.modelos.User;
 import com.example.tfg.repositorios.DiaRepository;
 import com.example.tfg.repositorios.EjercicioRepository;
 import com.example.tfg.repositorios.RutinaRepository;
@@ -126,5 +129,18 @@ public class ControladorRutina {
 				}
 			}
 		}
+	}
+	
+	@PutMapping("/rut")
+	@ResponseBody Object putUser(@RequestBody Rutina rutina) {
+		Optional<Rutina> opRut = repRut.findById(rutina.getId());
+		
+		Rutina newRutina = opRut.get();
+		
+		if(rutina.getRepeticiones() != newRutina.getRepeticiones())
+			newRutina.setRepeticiones(rutina.getRepeticiones());
+		
+		repRut.save(newRutina);
+		return newRutina;
 	}
 }

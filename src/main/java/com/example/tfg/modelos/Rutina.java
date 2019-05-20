@@ -36,7 +36,7 @@ public class Rutina {
 		this.repeticiones = repeticiones;
 		this.dia = dia;
 		this.ejercicio = ejercicio;
-	}
+	}	
 
 	public long getId() {
 		return id;
