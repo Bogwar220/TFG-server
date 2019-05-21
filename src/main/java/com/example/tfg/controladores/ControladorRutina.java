@@ -133,14 +133,16 @@ public class ControladorRutina {
 	
 	@PutMapping("/rut")
 	@ResponseBody Object putUser(@RequestBody Rutina rutina) {
-		Optional<Rutina> opRut = repRut.findById(rutina.getId());
-		
-		Rutina newRutina = opRut.get();
-		
-		if(rutina.getRepeticiones() != newRutina.getRepeticiones())
-			newRutina.setRepeticiones(rutina.getRepeticiones());
-		
-		repRut.save(newRutina);
-		return newRutina;
+		Iterable<Rutina> iterRut = repRut.findAll();
+		for(Rutina newRut : iterRut) {
+			if(newRut.getId() == rutina.getId()) {
+				if(rutina.getRepeticiones() != newRut.getRepeticiones()) {
+					newRut.setRepeticiones(rutina.getRepeticiones());
+					repRut.save(newRut);
+					return newRut;
+				}
+			}
+		}		
+		return null;
 	}
 }

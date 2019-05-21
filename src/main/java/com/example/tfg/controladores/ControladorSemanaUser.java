@@ -2,15 +2,18 @@ package com.example.tfg.controladores;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.tfg.modelos.Rutina;
 import com.example.tfg.modelos.Semana;
 import com.example.tfg.modelos.SemanaUser;
 import com.example.tfg.modelos.User;
@@ -83,4 +86,34 @@ public class ControladorSemanaUser {
 			}
 		}		
 	}
+	
+	@PutMapping("/semUser")
+	@ResponseBody Object putSemUser(@RequestBody SemanaUser semUser) {
+		Iterable<SemanaUser> iterSemUser = repSemUser.findAll();
+		for(SemanaUser newSemUser : iterSemUser) {
+			if(newSemUser.getId() == semUser.getId()) {
+				if(newSemUser.getSeleccionado() != semUser.getSeleccionado()) {
+					newSemUser.setSeleccionado(semUser.getSeleccionado());
+					repSemUser.save(newSemUser);
+					return newSemUser;
+				}
+			}
+		}
+		return null;		
+	}
+//	
+//	@PutMapping("/rut")
+//	@ResponseBody Object putUser(@RequestBody Rutina rutina) {
+//		Iterable<Rutina> iterRut = repRut.findAll();
+//		for(Rutina newRut : iterRut) {
+//			if(newRut.getId() == rutina.getId()) {
+//				if(rutina.getRepeticiones() != newRut.getRepeticiones()) {
+//					newRut.setRepeticiones(rutina.getRepeticiones());
+//					repRut.save(newRut);
+//					return newRut;
+//				}
+//			}
+//		}		
+//		return null;
+//	}
 }
