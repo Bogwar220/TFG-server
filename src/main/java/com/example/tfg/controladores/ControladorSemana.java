@@ -41,4 +41,15 @@ public class ControladorSemana {
 		crear("Medium");
 		crear("Dificil");
 	}
+	
+	@GetMapping("/semanaPorNombre")
+	@ResponseBody Object getSemanaPorNombre(@RequestParam String nombre) {
+		Iterable<Semana> iterSem = repSem.findAll();
+		for(Semana semana : iterSem) {
+			if(semana.getNombre().equals(nombre)) {
+				return semana;
+			}
+		}
+		return null;
+	}
 }

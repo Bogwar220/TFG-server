@@ -31,8 +31,6 @@ public class ControladorSemanaUser {
 	@Autowired
 	private UserRepository repUser;
 	
-	
-	//TODO:  no entiendo porque lo tengo que lanzar 2 veces para que lo enseñe
 	@GetMapping("/semUser")
 	@ResponseBody Object getSemUser(@RequestParam int idUser) {
 		List<SemanaUser> semanas = new ArrayList<SemanaUser>();
@@ -101,19 +99,4 @@ public class ControladorSemanaUser {
 		}
 		return null;		
 	}
-//	
-//	@PutMapping("/rut")
-//	@ResponseBody Object putUser(@RequestBody Rutina rutina) {
-//		Iterable<Rutina> iterRut = repRut.findAll();
-//		for(Rutina newRut : iterRut) {
-//			if(newRut.getId() == rutina.getId()) {
-//				if(rutina.getRepeticiones() != newRut.getRepeticiones()) {
-//					newRut.setRepeticiones(rutina.getRepeticiones());
-//					repRut.save(newRut);
-//					return newRut;
-//				}
-//			}
-//		}		
-//		return null;
-//	}
 }
