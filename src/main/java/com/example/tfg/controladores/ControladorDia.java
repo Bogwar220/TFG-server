@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.tfg.modelos.Dia;
 import com.example.tfg.modelos.Semana;
 import com.example.tfg.modelos.SemanaUser;
+import com.example.tfg.modelos.User;
 import com.example.tfg.repositorios.DiaRepository;
 import com.example.tfg.repositorios.SemanaRepository;
 import com.example.tfg.repositorios.SemanaUserRepository;
@@ -54,29 +56,7 @@ public class ControladorDia {
 		}
 		
 		return dias;
-	}
-	
-//	@GetMapping("/dia")
-//	@ResponseBody Object getDia(@RequestParam int idUser, @RequestParam int idSem) {
-//		Iterable<SemanaUser> iterSemUser = repSemUser.findAll();
-//		Iterable<Dia> iterDia = repDia.findAll();
-//		List<Dia> dias = new ArrayList<Dia>();
-//		for(SemanaUser semUser : iterSemUser) {
-//			if(semUser.getUser().getId() == idUser && semUser.getSemana().getId() == idSem) {
-//				for(Dia dia : iterDia) {
-//					if(dia.getSemana().getId() == semUser.getSemana().getId()) {
-//						dias.add(dia);
-//					}
-//				}
-//			}
-//		}
-//		if(dias.size() < 1) {
-//			anadir();
-//		}
-//		
-//		return dias;
-//	}
-	
+	}	
 	private void crear(String nombre, Semana semana) {
 		Dia dia = new Dia();
 		dia.setNombre(nombre);
@@ -99,5 +79,20 @@ public class ControladorDia {
 				crear("Domingo", semana);
 			}
 		}
+	}
+	
+	@PutMapping("/dia")
+	@ResponseBody Object putDia(@RequestBody Dia dia) {
+		Iterable<Dia> iterDia = repDia.findAll();
+		for(Dia newDia : iterDia) {
+			if(newDia.getId() == dia.getId()) {
+				if(dia.getNombre() != null) {
+					newDia.setNombre(dia.getNombre());
+					repDia.save(newDia);
+					return newDia;
+				}				
+			}
+		}
+		return null;
 	}
 }

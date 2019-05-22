@@ -26,7 +26,7 @@ public class ControladorEjercicio {
 	}
 	
 	@GetMapping(path = "/ej")
-	@ResponseBody Object getCand() {
+	@ResponseBody Object getEj() {
 		
 		if(repEj.findAll().size() < 1) {
 			anadirEj();
